@@ -59,6 +59,11 @@ var vm = new Vue({
         sav:function () {
            fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
           // fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+
+
+
+
+
         }
     }
 });
