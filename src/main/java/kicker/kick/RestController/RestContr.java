@@ -24,7 +24,6 @@ public class RestContr {
     GameRepository gameRepository;
 
     String el = "";
-
     @GetMapping("/save")
     public String go(@RequestParam String name1, @RequestParam Integer win1, @RequestParam Integer lose1, @RequestParam String name2) {
         Player player1 = new Player();
@@ -49,7 +48,6 @@ public class RestContr {
         //  gameRepository.save(game2);
         return "lol";
     }
-
 
     @GetMapping("/get/{name}")
     public Collection game(@PathVariable String name, @RequestParam(value = "kolvo", required = false, defaultValue = "10") Integer kolvo, @RequestParam(value = "oppoName", required = false, defaultValue = "Vse") String oppoName) {

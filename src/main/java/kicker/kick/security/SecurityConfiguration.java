@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("\\/api\\/save\\?*")
+                .regexMatchers("\\/api\\/save\\?*")
                 .authenticated();
     }
 
