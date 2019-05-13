@@ -50,11 +50,13 @@
                 <option value="dimas">dimas</option>
             </select>
         </div>
-        <div class="col-sm-2" style="max-width:15%;">
+        <div class="col-sm-0" style="max-width:15%;">
             <button v-on:click="fet" value="Go" class="blue">Go</button>
         </div>
+        <input class="col-sm-2" style="max-width:50%;" id="date" v-model="datka" placeholder="Write the date(dd/mm)">
+
         <div class="vr">&nbsp;</div>
-        <div class="col-sm-0" style="max-width:50%;">
+        <div class="col-sm-0 posio" style="max-width:50%;">
             <select v-model="save.igrok1">
                 <option selected="selected" value="Player1">Player1</option>
                 <option value="vi">vi</option>
@@ -63,7 +65,7 @@
             </select>
         </div>
 
-        <div class="col-sm-0" style="max-width:50%;">
+        <div class="col-sm-0 posio" style="max-width:50%;">
             <select v-model="save.zabil1">
                 <option selected="selected" value="GF">GF</option>
                 <option value="0">0</option>
@@ -79,7 +81,7 @@
                 <option value="10">10</option>
             </select>
         </div>
-        <div class="col-sm-0" style="max-width:50%;">
+        <div class="col-sm-0 posio" style="max-width:50%;">
             <select v-model="save.propustil">
                 <option selected="selected" value="GA">GA</option>
                 <option value="0">0</option>
@@ -95,7 +97,7 @@
                 <option value="10">10</option>
             </select>
         </div>
-        <div class="col-sm-0" style="max-width:50%;">
+        <div class="col-sm-0 posio" style="max-width:50%;">
             <select v-model="save.igrok2">
                 <option selected="selected" value="Player2">Player2</option>
                 <option value="vi">vi</option>
@@ -103,7 +105,7 @@
                 <option value="dimas">dimas</option>
             </select>
         </div>
-        <div class="col-sm-2" style="max-width:15%;">
+        <div class="col-sm-2 posio" style="max-width:15%;">
             <button v-on:click="sav" value="Go" class="blue">Save</button>
         </div>
     </div>

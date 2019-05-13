@@ -6,6 +6,7 @@ var vm = new Vue({
             dat: "10",
             countW: "",
             countL: 0,
+            datka:"",
             save:{
                 igrok1:"Player1",
                 igrok2:"Player2",
