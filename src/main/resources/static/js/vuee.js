@@ -29,7 +29,7 @@ var vm = new Vue({
     methods: {
         fet: function () {
           //  fetch('http://localhost:9000/api/get/' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
-            fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
+           fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
@@ -57,6 +57,7 @@ var vm = new Vue({
         },
         sav:function () {
             fetch('https://kickhard.herokuapp.com/api/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+          //  fetch('http://localhost:9000/api/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
         }
     }
 });
