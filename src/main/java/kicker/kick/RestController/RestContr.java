@@ -33,7 +33,7 @@ public class RestContr {
         System.out.println(datka+" datka");
         System.out.println("LOOOL");
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
-        if (oppoName.equals("Vse")&&datka.equals("")) {
+        if (oppoName.equals("Vse")) {
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
