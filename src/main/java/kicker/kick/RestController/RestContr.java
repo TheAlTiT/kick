@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class RestContr {
