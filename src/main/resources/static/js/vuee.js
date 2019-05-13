@@ -22,7 +22,8 @@ var vm = new Vue({
     },
     methods: {
         fet: function () {
-            fetch('http://localhost:9000/api/get/' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
+          //  fetch('http://localhost:9000/api/get/' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
+            fetch('https://kickhard.herokuapp.com/api/get' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
