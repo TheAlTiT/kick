@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
@@ -31,9 +33,13 @@ public class RestContr {
         List<Igrok> igroki = new ArrayList<>();
         Igrok igrok;
         System.out.println(datka+" datka");
+        System.out.println(oppoName+" oppoName");
         System.out.println("LOOOL");
+        Pattern p=Pattern.compile(datka);
+        p.matcher("");
+
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
-        if (oppoName.equals("Vse")) {
+        if (oppoName.equals("Vse")&&datka.trim().equals("Vse")) {
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
@@ -66,7 +72,7 @@ public class RestContr {
             }
         }
 
-        System.out.println(vse);
+        System.out.println(igroki);
         return igroki;
 
     }

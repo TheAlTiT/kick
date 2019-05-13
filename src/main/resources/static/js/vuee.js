@@ -29,8 +29,8 @@ var vm = new Vue({
     },
     methods: {
         fet: function () {
-           // fetch('http://localhost:8000/api/get/' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
-           fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo)
+           fetch('http://localhost:8000/api/get/' + this.user.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
+         //  fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
@@ -57,8 +57,8 @@ var vm = new Vue({
                 })
         },
         sav:function () {
-           fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
-          // fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+         //  fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+          fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
 
 
 
