@@ -5,7 +5,7 @@ import kicker.kick.Entities.Player;
 import kicker.kick.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-@CrossOrigin(origins = "http://localhost:8000")
+
 @RestController
 @RequestMapping("/ap")
 public class Rest2 {
