@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-@CrossOrigin()
+
 @RestController
 @RequestMapping("/api")
 public class RestContr {
@@ -49,6 +49,7 @@ public class RestContr {
         //  gameRepository.save(game2);
         return "lol";
     }
+
 
     @GetMapping("/get/{name}")
     public Collection game(@PathVariable String name, @RequestParam(value = "kolvo", required = false, defaultValue = "10") Integer kolvo, @RequestParam(value = "oppoName", required = false, defaultValue = "Vse") String oppoName) {
