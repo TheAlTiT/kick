@@ -112,6 +112,8 @@
     <div v-show="!countW==0&&!countL==0">
         <span class="zabil">{{countW}}</span>-<span class="propustil">{{countL}}</span>
     </div>
+    <div class="row">
+        <div class="col-sm-0" style="max-width:50%;">
     <table>
         <tr>
             <th>Name</th>
@@ -129,9 +131,30 @@
 
         </tr>
     </table>
+        </div>
+        <div class="col-sm-0" style="max-width:50%;">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th class="zabil">Zabil</th>
+                    <th class="propustil">Propustil</th>
+                    <th>Opponent</th>
+                    <th>Result</th>
+                </tr>
+                <tr v-for="us in user" v-bind:key="us.name">
+                    <th>{{us.name}}</th>
+                    <th class="zabil">{{us.zabil}}</th>
+                    <th class="propustil">{{us.propustil}}</th>
+                    <th>{{us.opponent}}</th>
+                    <th>{{us.result}}</th>
+
+                </tr>
+            </table>
+
+        </div>
 </div>
 
-
+</div>
 <script src="https://unpkg.com/vue"></script>
 
 

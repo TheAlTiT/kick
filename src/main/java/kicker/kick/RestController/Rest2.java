@@ -14,6 +14,7 @@ public class Rest2 {
 
     @GetMapping("/save")
     public String go(@RequestParam String name1, @RequestParam Integer win1, @RequestParam Integer lose1, @RequestParam String name2) {
+      if(!name1.equals(name2)){
         Player player1 = new Player();
         player1.setName(name1);
         player1.setOppoName(name2);
@@ -34,7 +35,8 @@ public class Rest2 {
     game2.setPlayer(player2);*/
         gameRepository.save(game1);
         //  gameRepository.save(game2);
-        return "lol";
+        return "lol";}
+      return "odinakovie imena";
     }
     @GetMapping("/del/{name}")
     public String go(@PathVariable String name){
