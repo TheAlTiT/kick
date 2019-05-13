@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +18,13 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+    @Min(value = 0)
+    @Max(value = 10)
     Integer win;
+    @Min(value = 0)
+    @Max(value = 10)
     Integer lose;
+
     String resultPlayer1;
     String resultPlayer2;
     LocalDate date;
