@@ -36,7 +36,7 @@ public class Rest2 {
         //  gameRepository.save(game2);
         return "lol";
     }
-    @GetMapping("/del")
+    @GetMapping("/del/{name}")
     public String go(@PathVariable String name){
         gameRepository.deleteAllByPlayerName(name);
         return "netu nichego";
