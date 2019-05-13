@@ -30,7 +30,7 @@ public class RestContr {
         String vse = "";
         List<Igrok> igroki = new ArrayList<>();
         Igrok igrok;
-
+        System.out.println(datka+" datka");
         System.out.println("LOOOL");
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
         if (oppoName.equals("Vse")&&datka.equals("")) {
