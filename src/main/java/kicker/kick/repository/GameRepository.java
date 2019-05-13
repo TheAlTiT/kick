@@ -13,4 +13,5 @@ public interface GameRepository extends PagingAndSortingRepository<Game, Long> {
 
     @Query(value = "select g from Game as g  join  g.player as p where (p.name=:fname and p.oppoName=:oname) or (p.name=:oname and p.oppoName=:fname)")
     Page<Game> findPaging(@Param("fname") String name, @Param("oname") String name3, Pageable pageable);
+    Game deleteAllBy();
 }

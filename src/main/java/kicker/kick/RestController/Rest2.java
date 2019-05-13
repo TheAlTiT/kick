@@ -39,5 +39,9 @@ public class Rest2 {
         //  gameRepository.save(game2);
         return "lol";
     }
-
+    @GetMapping("/del")
+    public String go(){
+        gameRepository.deleteAllBy();
+        return "netu nichego";
+    }
 }
