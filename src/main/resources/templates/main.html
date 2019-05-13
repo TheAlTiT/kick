@@ -5,7 +5,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <title>Pick your Book</title>
+    <title>Pick your Champion</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>
@@ -24,23 +24,25 @@
 <div id="app">
     <div class="row">
         <div class="col-sm-0" style="max-width:10%;">
-            <select v-model="user.name">
-                <option selected="selected" value="">Choose</option>
+            <select v-model="obje.name">
+                <option selected="selected" value="Choose">Choose</option>
                 <option value="vi">vi</option>
                 <option value="slavik">slavik</option>
                 <option value="dimas">dimas</option>
             </select>
 
         </div>
-        <div class="col-sm-1" style="max-width:50%;">
+        <div class="col-sm-0" style="max-width:50%;">
             <select v-model="dat">
                 <option>5</option>
                 <option value="10">10</option>
                 <option>15</option>
                 <option>20</option>
+                <option>50</option>
+                <option>100</option>
             </select>
         </div>
-        <div class="col-sm-1" style="max-width:50%;">
+        <div class="col-sm-0" style="max-width:50%;">
             <select v-model="oppo">
                 <option selected="selected" value="Vse">Vse</option>
                 <option value="vi">vi</option>
@@ -48,8 +50,59 @@
                 <option value="dimas">dimas</option>
             </select>
         </div>
-        <div class="col-sm-1" style="max-width:15%;">
-            <button v-on:click="fet" value="Go" style="height:40px;width:40px">Go</button>
+        <div class="col-sm-2" style="max-width:15%;">
+            <button v-on:click="fet" value="Go" class="blue">Go</button>
+        </div>
+        <div class="vr">&nbsp;</div>
+        <div class="col-sm-0" style="max-width:50%;">
+            <select v-model="save.igrok1">
+                <option selected="selected" value="Player1">Player1</option>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
+        </div>
+
+        <div class="col-sm-0" style="max-width:50%;">
+            <select v-model="save.zabil1">
+                <option selected="selected" value="GF">GF</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div class="col-sm-0" style="max-width:50%;">
+            <select v-model="save.propustil">
+                <option selected="selected" value="GA">GA</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <div class="col-sm-0" style="max-width:50%;">
+            <select v-model="save.igrok2">
+                <option selected="selected" value="Player2">Player2</option>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
+        </div>
+        <div class="col-sm-2" style="max-width:15%;">
+            <button v-on:click="sav" value="Go" class="blue">Save</button>
         </div>
     </div>
     <div v-show="!countW==0&&!countL==0">

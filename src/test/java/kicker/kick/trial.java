@@ -3,12 +3,13 @@ package kicker.kick;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class trial {
     public static void main(String[] args) {
-        Calendar calendar = Calendar.getInstance();
-        System.out.println(calendar.getTime());
-        LocalDate today = LocalDate.now();
-        System.out.println(today);
+        Pattern p =Pattern.compile("slavik|dimas|vi");
+        Matcher matcher=p.matcher("vi");
+        System.out.println(matcher.matches());
     }
 }
