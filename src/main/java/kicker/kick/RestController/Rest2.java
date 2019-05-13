@@ -14,7 +14,7 @@ public class Rest2 {
 
     @GetMapping("/save")
     public String go(@RequestParam String name1, @RequestParam Integer win1, @RequestParam Integer lose1, @RequestParam String name2) {
-      if(!name1.equals(name2)){
+      if(!name1.equals(name2)&&(win1==10||lose1==10)){
         Player player1 = new Player();
         player1.setName(name1);
         player1.setOppoName(name2);
