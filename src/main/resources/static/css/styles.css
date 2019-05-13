@@ -1,0 +1,30 @@
+
+.jumbotron {
+    background: url('https://newsland.com/static/u/nlo/news_images/371/big_371333.jpg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    padding-top: 15%;
+    padding-bottom: 10%;
+}
+
+.jumbotron h1 {
+    position: relative;
+    display: block;
+    font-weight: bold;
+    font-size: 50px;
+    color: green;
+    padding-left: 40px;
+}
+
+.zabil {
+    color: #3333ff !important;
+}
+
+.propustil {
+    color: #ff3352 !important;
+}
+
+body {
+    padding: 20px;
+}
+

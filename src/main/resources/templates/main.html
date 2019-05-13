@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Pick your Book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hi, Losers, Are you ready to be smacked down?</h1>
+
+    </div>
+</div>
+<div id="app">
+    <div class="row">
+        <div class="col-sm-0" style="max-width:10%;">
+            <select v-model="user.name">
+                <option selected="selected" value="">Choose</option>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
+
+        </div>
+        <div class="col-sm-1" style="max-width:50%;">
+            <select v-model="dat">
+                <option>5</option>
+                <option value="10">10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
+        </div>
+        <div class="col-sm-1" style="max-width:50%;">
+            <select v-model="oppo">
+                <option selected="selected" value="Vse">Vse</option>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
+        </div>
+        <div class="col-sm-1" style="max-width:15%;">
+            <button v-on:click="fet" value="Go" style="height:40px;width:40px">Go</button>
+        </div>
+    </div>
+    <div v-show="!countW==0&&!countL==0">
+        <span class="zabil">{{countW}}</span>-<span class="propustil">{{countL}}</span>
+    </div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th class="zabil">Zabil</th>
+            <th class="propustil">Propustil</th>
+            <th>Opponent</th>
+            <th>Result</th>
+        </tr>
+        <tr v-for="us in user" v-bind:key="us.name">
+            <th>{{us.name}}</th>
+            <th class="zabil">{{us.zabil}}</th>
+            <th class="propustil">{{us.propustil}}</th>
+            <th>{{us.opponent}}</th>
+            <th>{{us.result}}</th>
+
+        </tr>
+    </table>
+</div>
+
+
+<script src="https://unpkg.com/vue"></script>
+
+
+<script src="/js/vuee.js"></script>
+
+</body>
+</html>
