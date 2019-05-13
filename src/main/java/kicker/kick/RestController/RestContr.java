@@ -61,7 +61,7 @@ public class RestContr {
                     igroki.add(igrok);
                 }
                 if (game.getPlayer2().getName().equals(name) && game.getPlayer().getName().equals(oppoName)) {
-                    igrok = new Igrok(game.getPlayer2().getName(), game.getWin(), game.getLose(), game.getPlayer().getName(), game.getResultPlayer1());
+                    igrok = new Igrok(game.getPlayer2().getName(), game.getLose(), game.getWin(), game.getPlayer().getName(), game.getResultPlayer1());
                     igroki.add(igrok);
                 }
             }
