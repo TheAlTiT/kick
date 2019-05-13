@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/ap/**")
-                .authenticated();
+                .authenticated().and().csrf().disable();
     }
 
     @Bean
