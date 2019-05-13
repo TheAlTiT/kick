@@ -26,14 +26,14 @@ public class RestContr {
 
 
     @GetMapping("/get/{name}")
-    public Collection game(@PathVariable String name, @RequestParam(value = "kolvo", required = false, defaultValue = "10") Integer kolvo, @RequestParam(value = "oppoName", required = false, defaultValue = "Vse") String oppoName) {
+    public Collection game(@PathVariable String name, @RequestParam(value = "kolvo", required = false, defaultValue = "10") Integer kolvo, @RequestParam(value = "oppoName", required = false, defaultValue = "Vse") String oppoName,@RequestParam(value = "datka", required = false,defaultValue = "Vse") String datka) {
         String vse = "";
         List<Igrok> igroki = new ArrayList<>();
         Igrok igrok;
 
         System.out.println("LOOOL");
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
-        if (oppoName.equals("Vse")) {
+        if (oppoName.equals("Vse")&&datka.equals("")) {
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
@@ -65,6 +65,7 @@ public class RestContr {
                 }
             }
         }
+
         System.out.println(vse);
         return igroki;
 
