@@ -49,18 +49,20 @@ public class RestContr {
 
             LocalDate ld= LocalDate.parse(datka,bd);
 
-            Iterable<Game> games1 = gameRepository.findAllByDateAndPlayerNameOrPlayer2Name(ld,name, name, pageable).getContent();
-
+            Iterable<Game> games1 = gameRepository.findAllByDateAndPlayerNameOrDateAndPlayer2Name(ld,name,ld,name, pageable).getContent();
+            System.out.println(games1.spliterator().getExactSizeIfKnown()+ "SIZE");
             for (Game game : games1) {
                 if (game.getPlayer().getName().equals(name)) {
                 LocalDate dd=game.getDate();
-                    System.out.println(dd.toString());
+                    System.out.println(dd.toString()+"IN 1");
                     igrok = new Igrok(game.getPlayer().getName(), game.getWin(), game.getLose(), game.getPlayer2().getName(), game.getResultPlayer1());
                     igroki.add(igrok);
                     //vse = vse.concat(game.getPlayer().getName() + " W =" + game.getWin() + " L " + game.getLose() + " Opponent " + game.getPlayer2().getName() + " i resultat = " + game.getResultPlayer1() + "\n");
 
                 }
                 if (game.getPlayer2().getName().equals(name)) {
+                    LocalDate dd=game.getDate();
+                    System.out.println(dd.toString()+"IN 2");
                     igrok = new Igrok(game.getPlayer2().getName(), game.getLose(), game.getWin(), game.getPlayer().getName(), game.getResultPlayer2());
                     igroki.add(igrok);
                     // vse = vse.concat(game.getPlayer2().getName())+ " W =" + game.getLose() + " L " + game.getWin()+ " Opponent " + game.getPlayer().getName() + " i resultat = " + game.getResultPlayer2() + "\n";
@@ -70,6 +72,7 @@ public class RestContr {
             }
         }
        else if (oppoName.equals("Vse")&&datka.equals("Vse")) {
+            System.out.println("TAM GDE VSE");
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
@@ -89,6 +92,7 @@ public class RestContr {
 
             }
         } else {
+            System.out.println("ELSE");
             Iterable<Game> games1 = gameRepository.findPaging(name, oppoName, pageable).getContent();
             for (Game game : games1) {
                 if (game.getPlayer().getName().equals(name) && game.getPlayer2().getName().equals(oppoName)) {

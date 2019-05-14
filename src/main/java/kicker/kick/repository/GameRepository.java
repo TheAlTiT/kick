@@ -19,5 +19,5 @@ public interface GameRepository extends PagingAndSortingRepository<Game, Long> {
     Page<Game> findPaging(@Param("fname") String name, @Param("oname") String name3, Pageable pageable);
     @Transactional
     Integer deleteAllByPlayerName(String name);
-    Page<Game>findAllByDateAndPlayerNameOrPlayer2Name(LocalDate date,String name, String name2,  Pageable pageable);
+    Page<Game>findAllByDateAndPlayerNameOrDateAndPlayer2Name(LocalDate date,String name, LocalDate date2,String name2,  Pageable pageable);
 }
