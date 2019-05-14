@@ -71,6 +71,23 @@ public class RestContr {
 
             }
         }
+       else if(!oppoName.equals("Vse")&&matcher.matches()){
+            System.out.println("ZAHODIMA??? V NE VSE");
+            DateTimeFormatter bd=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            LocalDate ld= LocalDate.parse(datka,bd);
+            Iterable<Game> games1 = gameRepository.findPagingDate(name, oppoName,ld, pageable).getContent();
+            for (Game game : games1) {
+                if (game.getPlayer().getName().equals(name) && game.getPlayer2().getName().equals(oppoName)) {
+                    igrok = new Igrok(game.getPlayer().getName(), game.getWin(), game.getLose(), game.getPlayer2().getName(), game.getResultPlayer1());
+                    igroki.add(igrok);
+                }
+                if (game.getPlayer2().getName().equals(name) && game.getPlayer().getName().equals(oppoName)) {
+                    igrok = new Igrok(game.getPlayer2().getName(), game.getLose(), game.getWin(), game.getPlayer().getName(), game.getResultPlayer2());
+                    igroki.add(igrok);
+                }
+            }
+        }
        else if (oppoName.equals("Vse")&&datka.equals("Vse")) {
             System.out.println("TAM GDE VSE");
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
