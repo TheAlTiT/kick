@@ -9,6 +9,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.Date;
 
 public interface GameRepository extends PagingAndSortingRepository<Game, Long> {
     Page<Game> findAllByPlayerNameOrPlayer2Name(String name, String name2, Pageable pageable);
@@ -17,4 +19,5 @@ public interface GameRepository extends PagingAndSortingRepository<Game, Long> {
     Page<Game> findPaging(@Param("fname") String name, @Param("oname") String name3, Pageable pageable);
     @Transactional
     Integer deleteAllByPlayerName(String name);
+    Page<Game>findAllByPlayerNameOrPlayer2NameAndDate(String name, String name2, LocalDate date, Pageable pageable);
 }

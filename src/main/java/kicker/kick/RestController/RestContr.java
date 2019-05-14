@@ -11,12 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@SuppressWarnings("Duplicates")
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
@@ -35,11 +36,38 @@ public class RestContr {
         System.out.println(datka+" datka");
         System.out.println(oppoName+" oppoName");
         System.out.println("LOOOL");
-        Pattern p=Pattern.compile(datka);
-        p.matcher("");
+
 
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
-        if (oppoName.equals("Vse")&&datka.trim().equals("Vse")) {
+
+        Pattern p = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}$");
+        Matcher matcher=p.matcher(datka);
+        if(oppoName.equals("Vse")&&matcher.matches()){
+            DateTimeFormatter my=DateTimeFormatter.ofPattern("d/M");
+            DateTimeFormatter bd=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            MonthDay monthDay=MonthDay.parse(datka,my);
+            LocalDate ld=monthDay.atYear(2019);
+
+            Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2NameAndDate(name, name,ld, pageable).getContent();
+
+            for (Game game : games1) {
+                if (game.getPlayer().getName().equals(name)) {
+
+                    igrok = new Igrok(game.getPlayer().getName(), game.getWin(), game.getLose(), game.getPlayer2().getName(), game.getResultPlayer1());
+                    igroki.add(igrok);
+                    //vse = vse.concat(game.getPlayer().getName() + " W =" + game.getWin() + " L " + game.getLose() + " Opponent " + game.getPlayer2().getName() + " i resultat = " + game.getResultPlayer1() + "\n");
+
+                }
+                if (game.getPlayer2().getName().equals(name)) {
+                    igrok = new Igrok(game.getPlayer2().getName(), game.getLose(), game.getWin(), game.getPlayer().getName(), game.getResultPlayer2());
+                    igroki.add(igrok);
+                    // vse = vse.concat(game.getPlayer2().getName())+ " W =" + game.getLose() + " L " + game.getWin()+ " Opponent " + game.getPlayer().getName() + " i resultat = " + game.getResultPlayer2() + "\n";
+
+                }
+
+            }
+        }
+       else if (oppoName.equals("Vse")&&datka.trim().equals("Vse")) {
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
