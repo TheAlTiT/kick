@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class trial {
     public static void main(String[] args) throws Exception{
-        String datka="01/04";
-        Pattern p = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}$");
+        String datka="2019-05-13";
+        Pattern p = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
         Matcher matcher=p.matcher(datka);
         System.out.println(matcher.matches());
         DateTimeFormatter my=DateTimeFormatter.ofPattern("d/M");

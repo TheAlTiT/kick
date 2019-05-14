@@ -1,5 +1,6 @@
 package kicker.kick.RestController;
 
+
 import kicker.kick.Entities.Game;
 import kicker.kick.Entities.Player;
 import kicker.kick.Services.Igrok;
@@ -40,19 +41,20 @@ public class RestContr {
 
         Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
 
-        Pattern p = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}$");
+        Pattern p = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
         Matcher matcher=p.matcher(datka);
         if(oppoName.equals("Vse")&&matcher.matches()){
-            DateTimeFormatter my=DateTimeFormatter.ofPattern("d/M");
+            System.out.println("ZAHODIMA???");
             DateTimeFormatter bd=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            MonthDay monthDay=MonthDay.parse(datka,my);
-            LocalDate ld=monthDay.atYear(2019);
 
-            Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2NameAndDate(name, name,ld, pageable).getContent();
+            LocalDate ld= LocalDate.parse(datka,bd);
+
+            Iterable<Game> games1 = gameRepository.findAllByDateAndPlayerNameOrPlayer2Name(ld,name, name, pageable).getContent();
 
             for (Game game : games1) {
                 if (game.getPlayer().getName().equals(name)) {
-
+                LocalDate dd=game.getDate();
+                    System.out.println(dd.toString());
                     igrok = new Igrok(game.getPlayer().getName(), game.getWin(), game.getLose(), game.getPlayer2().getName(), game.getResultPlayer1());
                     igroki.add(igrok);
                     //vse = vse.concat(game.getPlayer().getName() + " W =" + game.getWin() + " L " + game.getLose() + " Opponent " + game.getPlayer2().getName() + " i resultat = " + game.getResultPlayer1() + "\n");
@@ -67,7 +69,7 @@ public class RestContr {
 
             }
         }
-       else if (oppoName.equals("Vse")&&datka.trim().equals("Vse")) {
+       else if (oppoName.equals("Vse")&&datka.equals("Vse")) {
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name, name, pageable).getContent();
 
             for (Game game : games1) {
