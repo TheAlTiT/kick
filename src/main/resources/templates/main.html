@@ -57,6 +57,7 @@
 
 
    <!--    <div class="vr">&nbsp;</div>-->
+
         <div class="col-sm-0 posio" style="max-width:50%;">
             <select v-model="save.igrok1">
                 <option selected="selected" value="Player1">Player1</option>
@@ -133,26 +134,49 @@
         </tr>
     </table>
         </div>
-     <!--   <div class="col-sm-2" style="max-width:50%;">
-            <table>
+       <div >
+            <table class="table table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <th>Name</th>
-                    <th class="zabil">Zabil</th>
-                    <th class="propustil">Propustil</th>
-                    <th>Opponent</th>
-                    <th>Result</th>
-                </tr>
-                <tr v-for="us in user" v-bind:key="us.name">
-                    <th>{{us.name}}</th>
-                    <th class="zabil">{{us.zabil}}</th>
-                    <th class="propustil">{{us.propustil}}</th>
-                    <th>{{us.opponent}}</th>
-                    <th>{{us.result}}</th>
+                    <th></th>
+                    <th scope="col">vi</th>
+                    <th scope="col">dimas</th>
+                    <th scope="col">slavik</th>
 
                 </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">vi</th>
+                    <td >XXXXX</td>
+                    <td>{{vidimas.vi}}-{{vidimas.dimas}}</td>
+                    <td >vi vs slavik</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">dimas</th>
+                    <td >dimas vs </td>
+                    <td>XXXXX</td>
+                    <td >dimas vs slavik</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">slavik</th>
+                <td >slavik vs vi</td>
+                <td >slavik vs dimas</td>
+                    <td >XXXXX</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total</th>
+                    <td >Total</td>
+                    <td >Total</td>
+                    <td >Total</td>
+
+            </tr>
+                </tbody>
             </table>
+       </div>
 
-        </div> -->
 </div>
 
 </div>
