@@ -43,11 +43,6 @@ public class RestContr {
         }catch (Exception ee){
             kolvo=0;
         }
-
-        Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
-
-        Pattern p = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
-        Matcher matcher=p.matcher(datka);
         if(kolevo.equals("Vse")){
             Iterable<Game> games1 = gameRepository.findAllByPlayerNameOrPlayer2Name(name,name);
             for (Game game : games1) {
@@ -66,8 +61,14 @@ public class RestContr {
                 }
 
             }
+            return igroki;
         }
-        else if(oppoName.equals("Vse")&&matcher.matches()){
+        Pageable pageable = PageRequest.of(0, kolvo, Sort.Direction.DESC, "id");
+
+        Pattern p = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
+        Matcher matcher=p.matcher(datka);
+
+        if(oppoName.equals("Vse")&&matcher.matches()){
             System.out.println("ZAHODIMA???");
             DateTimeFormatter bd=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
