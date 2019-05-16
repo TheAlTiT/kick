@@ -203,6 +203,6 @@ var vm = new Vue({
     created:function() {
         setTimeout(()=>{this.cli(this.vi)},10);
       setTimeout(()=>{this.cli(this.dimas)},10);
-        setTimeout(()=>{this.tot()},200);
+        setTimeout(()=>{this.tot()},500);
     }
 });
