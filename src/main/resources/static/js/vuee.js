@@ -197,12 +197,12 @@ var vm = new Vue({
            //    fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
             setTimeout(()=>{this.cli(this.vi)},200);
             setTimeout(()=>{this.cli(this.dimas)},200);
-            setTimeout(()=>{this.tot()},600);
+            setTimeout(()=>{this.tot()},800);
         }
     },
     created:function() {
         setTimeout(()=>{this.cli(this.vi)},10);
       setTimeout(()=>{this.cli(this.dimas)},10);
-        setTimeout(()=>{this.tot()},600);
+        setTimeout(()=>{this.tot()},800);
     }
-});
+})
