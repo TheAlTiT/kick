@@ -13,7 +13,7 @@ public class MainController {
     @Autowired
     GameRepository gameRepository;
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main() {
         return "main";
     }
