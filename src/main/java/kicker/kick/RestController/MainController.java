@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping
@@ -18,4 +19,10 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/main")
+    public RedirectView locred() {
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/");
+        return redirectView;
+    }
 }
