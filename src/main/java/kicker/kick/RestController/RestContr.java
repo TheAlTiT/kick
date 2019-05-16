@@ -35,6 +35,7 @@ public class RestContr {
         List<Igrok> igroki = new ArrayList<>();
         Igrok igrok;
         System.out.println(datka+" datka");
+        System.out.println(name+" name");
         System.out.println(oppoName+" oppoName");
         System.out.println("LOOOL");
         Integer kolvo=0;

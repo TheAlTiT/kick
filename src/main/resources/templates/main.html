@@ -111,7 +111,7 @@
             <button v-on:click="sav" value="Go" class="blue">Save</button>
         </div>
     </div>
-    <div v-show="!countW==0&&!countL==0">
+    <div v-show="(!countW==0)&&(!countL==0)">
         <span class="zabil">{{countW}}</span>-<span class="propustil">{{countL}}</span>
     </div>
     <div class="row">
@@ -146,31 +146,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr v-bind:key="vidimas.vi">
                     <th scope="row">vi</th>
                     <td >XXXXX</td>
-                    <td>{{vidimas.vi}}-{{vidimas.dimas}}</td>
-                    <td >vi vs slavik</td>
+                    <td><span class="zabil">{{vidimas.dimas}}</span>-<span class="propustil">{{vidimas.vi}}</span>(<span class="zabil">{{vidimas.viGA}}</span>-<span class="propustil">{{vidimas.viGF}}</span>)</td>
+                    <td ><span class="zabil">{{vislavik.slavik}}</span>-<span class="propustil">{{vislavik.vi}}</span>(<span class="zabil">{{vislavik.viGA}}</span>-<span class="propustil">{{vislavik.viGF}}</span>)</td>
 
                 </tr>
                 <tr>
                     <th scope="row">dimas</th>
-                    <td >dimas vs </td>
+                    <td ><span class="zabil">{{vidimas.vi}}</span>-<span class="propustil">{{vidimas.dimas}}</span>(<span class="zabil">{{vidimas.viGF}}</span>-<span class="propustil">{{vidimas.viGA}}</span>) </td>
                     <td>XXXXX</td>
-                    <td >dimas vs slavik</td>
+                    <td ><span class="zabil">{{dimasslavik.slavik}}</span>-<span class="propustil">{{dimasslavik.dimas}}</span>(<span class="zabil">{{dimasslavik.dimasGF}}</span>-<span class="propustil">{{dimasslavik.dimasGA}}</span>)</td>
 
                 </tr>
                 <tr>
                     <th scope="row">slavik</th>
-                <td >slavik vs vi</td>
-                <td >slavik vs dimas</td>
+                <td ><span class="zabil">{{vislavik.vi}}</span>-<span class="propustil">{{vislavik.slavik}}</span>(<span class="zabil">{{vislavik.viGF}}</span>-<span class="propustil">{{vislavik.viGA}}</span>)</td>
+                <td ><span class="zabil">{{dimasslavik.dimas}}</span>-<span class="propustil">{{dimasslavik.slavik}}</span>(<span class="zabil">{{dimasslavik.dimasGF}}</span>-<span class="propustil">{{dimasslavik.dimasGA}}</span>)</td>
                     <td >XXXXX</td>
                 </tr>
                 <tr>
                     <th scope="row">Total</th>
-                    <td >Total</td>
-                    <td >Total</td>
-                    <td >Total</td>
+                    <td ><span class="zabil">{{total.viW}}</span>-<span class="propustil">{{total.viL}}</span>(<span class="zabil">{{total.viGF}}</span>-<span class="propustil">{{total.viGA}}</span>)</td>
+                    <td ><span class="zabil">{{total.dimasW}}</span>-<span class="propustil">{{total.dimasL}}</span>(<span class="zabil">{{total.dimasGF}}</span>-<span class="propustil">{{total.dimasGA}}</span>)</td>
+                 <td ><span class="zabil">{{total.slavikW}}</span>-<span class="propustil">{{total.slavikL}}</span>(<span class="zabil">{{total.slavikGF}}</span>-<span class="propustil">{{total.slavikGA}}</span>)</td>
 
             </tr>
                 </tbody>
