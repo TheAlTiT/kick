@@ -2,7 +2,7 @@ var vm = new Vue({
     el: '#app',
     data() {
         return {
-            info: "click pidr",
+            info: "click",
             dat: "10",
             countW: "",
             countL: 0,
