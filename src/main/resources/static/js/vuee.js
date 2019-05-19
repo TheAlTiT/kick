@@ -107,8 +107,8 @@ var vm = new Vue({
     },
     methods: {
         fet: function () {
-          //  fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo + '&datka=' + this.datka)
-              fetch('http://localhost:8000/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
+           fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo + '&datka=' + this.datka)
+           //   fetch('http://localhost:8000/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
@@ -136,8 +136,8 @@ var vm = new Vue({
         },
         cli:function(nam1){
 
-          //  fetch('https://kickhard.herokuapp.com/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
-              fetch('http://localhost:8000/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
+          fetch('https://kickhard.herokuapp.com/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
+         //     fetch('http://localhost:8000/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
@@ -226,10 +226,10 @@ var vm = new Vue({
             this.total.slavikGA+=this.vislavik.viGF+this.dimasslavik.dimasGF;
         },
         sav: function () {
-         //   fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil + '&name2=' + this.save.igrok2)
-                fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
-            setTimeout(()=>{this.cli(this.vi)},200);
-            setTimeout(()=>{this.cli(this.dimas)},200);
+            fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil + '&name2=' + this.save.igrok2)
+            //    fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+            setTimeout(()=>{this.cli(this.vi)},500);
+            setTimeout(()=>{this.cli(this.dimas)},100);
             setTimeout(()=>{this.tot()},800);
         }
     },
