@@ -15,12 +15,22 @@
 </head>
 <body>
 
+<!--<div class="container">
+    <div class="jumbotron">
+        <h1>Hi, Losers, Are you ready to be smacked down?</h1>
+
+    </div>
+</div>-->
 <div id="app">
     <div class="row">
         <div class="col-sm-0" style="max-width:10%;">
-            <igroki v-model="obje.name">
+            <select v-model="obje.name">
                 <option selected="selected" value="Choose">Choose</option>
-            </igroki>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
+
         </div>
         <div class="col-sm-0" style="max-width:50%;">
             <select v-model="dat">
@@ -33,35 +43,69 @@
             </select>
         </div>
         <div class="col-sm-0" style="max-width:50%;">
-            <igroki v-model="oppo">
+            <select v-model="oppo">
                 <option selected="selected" value="Vse">Vse</option>
-            </igroki>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
         </div>
         <input class="col-sm-0" style="max-width:50%;" type="date" v-model="datka" placeholder="Write the date(dd/mm)">
         <div class="col-sm-1" style="max-width:15%;">
             <button v-on:click="fet" value="Go" class="blue">Go</button>
         </div>
 
+
+   <!--    <div class="vr">&nbsp;</div>-->
+
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <igroki v-model="save.igrok1">
+            <select v-model="save.igrok1">
                 <option selected="selected" value="Player1">Player1</option>
-            </igroki>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
         </div>
 
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <options v-model="save.zabil1">
+            <select v-model="save.zabil1">
                 <option selected="selected" value="GF">GF</option>
-            </options>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
         </div>
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <options v-model="save.propustil">
+            <select v-model="save.propustil">
                 <option selected="selected" value="GA">GA</option>
-            </options>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
         </div>
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <igroki v-model="save.igrok2">
+            <select v-model="save.igrok2">
                 <option selected="selected" value="Player2">Player2</option>
-            </igroki>
+                <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+            </select>
         </div>
         <div class="col-sm-2 posio" style="max-width:15%;">
             <button v-on:click="sav" value="Go" class="blue">Save</button>
@@ -72,25 +116,25 @@
     </div>
     <div class="row">
         <div class="col-sm-5" style="max-width:50%;">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th class="zabil">Zabil</th>
-                    <th class="propustil">Propustil</th>
-                    <th>Opponent</th>
-                    <th>Result</th>
-                </tr>
-                <tr v-for="us in user" v-bind:key="us.name">
-                    <th>{{us.name}}</th>
-                    <th class="zabil">{{us.zabil}}</th>
-                    <th class="propustil">{{us.propustil}}</th>
-                    <th>{{us.opponent}}</th>
-                    <th>{{us.result}}</th>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th class="zabil">Zabil</th>
+            <th class="propustil">Propustil</th>
+            <th>Opponent</th>
+            <th>Result</th>
+        </tr>
+        <tr v-for="us in user" v-bind:key="us.name">
+            <th>{{us.name}}</th>
+            <th class="zabil">{{us.zabil}}</th>
+            <th class="propustil">{{us.propustil}}</th>
+            <th>{{us.opponent}}</th>
+            <th>{{us.result}}</th>
 
-                </tr>
-            </table>
+        </tr>
+    </table>
         </div>
-        <div >
+       <div >
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
@@ -118,22 +162,22 @@
                 </tr>
                 <tr>
                     <th scope="row">slavik</th>
-                    <td ><span class="zabil">{{vislavik.vi}}</span>-<span class="propustil">{{vislavik.slavik}}</span>(<span class="zabil">{{vislavik.viGF}}</span>-<span class="propustil">{{vislavik.viGA}}</span>)</td>
-                    <td ><span class="zabil">{{dimasslavik.dimas}}</span>-<span class="propustil">{{dimasslavik.slavik}}</span>(<span class="zabil">{{dimasslavik.dimasGF}}</span>-<span class="propustil">{{dimasslavik.dimasGA}}</span>)</td>
+                <td ><span class="zabil">{{vislavik.vi}}</span>-<span class="propustil">{{vislavik.slavik}}</span>(<span class="zabil">{{vislavik.viGF}}</span>-<span class="propustil">{{vislavik.viGA}}</span>)</td>
+                <td ><span class="zabil">{{dimasslavik.dimas}}</span>-<span class="propustil">{{dimasslavik.slavik}}</span>(<span class="zabil">{{dimasslavik.dimasGF}}</span>-<span class="propustil">{{dimasslavik.dimasGA}}</span>)</td>
                     <td >XXXXX</td>
                 </tr>
                 <tr>
                     <th scope="row">Total</th>
                     <td ><span class="zabil">{{total.viW}}</span>-<span class="propustil">{{total.viL}}</span>(<span class="zabil">{{total.viGF}}</span>-<span class="propustil">{{total.viGA}}</span>)</td>
                     <td ><span class="zabil">{{total.dimasW}}</span>-<span class="propustil">{{total.dimasL}}</span>(<span class="zabil">{{total.dimasGF}}</span>-<span class="propustil">{{total.dimasGA}}</span>)</td>
-                    <td ><span class="zabil">{{total.slavikW}}</span>-<span class="propustil">{{total.slavikL}}</span>(<span class="zabil">{{total.slavikGF}}</span>-<span class="propustil">{{total.slavikGA}}</span>)</td>
+                 <td ><span class="zabil">{{total.slavikW}}</span>-<span class="propustil">{{total.slavikL}}</span>(<span class="zabil">{{total.slavikGF}}</span>-<span class="propustil">{{total.slavikGA}}</span>)</td>
 
-                </tr>
+            </tr>
                 </tbody>
             </table>
-        </div>
+       </div>
 
-    </div>
+</div>
 
 </div>
 <script src="https://unpkg.com/vue"></script>
