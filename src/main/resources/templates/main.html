@@ -15,22 +15,12 @@
 </head>
 <body>
 
-<!--<div class="container">
-    <div class="jumbotron">
-        <h1>Hi, Losers, Are you ready to be smacked down?</h1>
-
-    </div>
-</div>-->
 <div id="app">
     <div class="row">
         <div class="col-sm-0" style="max-width:10%;">
-            <select v-model="obje.name">
-                <option selected="selected" value="Choose">Choose</option>
-                <option value="vi">vi</option>
-                <option value="slavik">slavik</option>
-                <option value="dimas">dimas</option>
-            </select>
-
+   <igroki v-model="obje.name">
+   <option selected="selected" value="Choose">Choose</option>
+  </igroki>
         </div>
         <div class="col-sm-0" style="max-width:50%;">
             <select v-model="dat">
@@ -43,70 +33,36 @@
             </select>
         </div>
         <div class="col-sm-0" style="max-width:50%;">
-            <select v-model="oppo">
-                <option selected="selected" value="Vse">Vse</option>
-                <option value="vi">vi</option>
-                <option value="slavik">slavik</option>
-                <option value="dimas">dimas</option>
-            </select>
+     <igroki v-model="oppo">
+  <option selected="selected" value="Vse">Vse</option>
+      </igroki>
         </div>
         <input class="col-sm-0" style="max-width:50%;" type="date" v-model="datka" placeholder="Write the date(dd/mm)">
         <div class="col-sm-1" style="max-width:15%;">
             <button v-on:click="fet" value="Go" class="blue">Go</button>
         </div>
 
-
-   <!--    <div class="vr">&nbsp;</div>-->
-
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <select v-model="save.igrok1">
-                <option selected="selected" value="Player1">Player1</option>
-                <option value="vi">vi</option>
-                <option value="slavik">slavik</option>
-                <option value="dimas">dimas</option>
-            </select>
-        </div>
+        <igroki v-model="save.igrok1">
+    <option selected="selected" value="Player1">Player1</option>
+  </igroki>
+       </div>
 
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <select v-model="save.zabil1">
-                <option selected="selected" value="GF">GF</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
+     <options v-model="save.zabil">
+              <option selected="selected" value="GF">GF</option>
+         </options>
         </div>
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <select v-model="save.propustil">
-                <option selected="selected" value="GA">GA</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
+         <options v-model="save.propustil">
+              <option selected="selected" value="GA">GA</option>
+         </options>
         </div>
         <div class="col-sm-0 posio" style="max-width:50%;">
-            <select v-model="save.igrok2">
-                <option selected="selected" value="Player2">Player2</option>
-                <option value="vi">vi</option>
-                <option value="slavik">slavik</option>
-                <option value="dimas">dimas</option>
-            </select>
-        </div>
+          <igroki v-model="save.igrok2">
+       <option selected="selected" value="Player2">Player2</option>
+          </igroki>
+  </div>
         <div class="col-sm-2 posio" style="max-width:15%;">
             <button v-on:click="sav" value="Go" class="blue">Save</button>
         </div>
