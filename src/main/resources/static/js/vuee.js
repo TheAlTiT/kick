@@ -1,3 +1,36 @@
+Vue.component('igroki',{
+    props:['players'],
+    template: `<select v-bind:players="val" v-on:input="$emit('input', $event.target.value)">
+               <slot></slot>
+               <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+</select>`,
+data:function(){
+return{
+val:this.players
+     }
+
+}})
+Vue.component('options',{
+props:['opts'],
+template:`<select :opts="val" @input="$emit('input',$event.target.value)">
+<slot></slot>
+<option v-for="index in range(0,10)" :value="index"">{{index}}</op[tion]>
+</select>
+`,
+data:function(){
+return {
+val:this.opts,
+index:0
+}
+},
+methods:{
+  	range : function (start, end) {
+      return Array(end - start + 1).fill().map((_, idx) => start + idx)
+   }
+  }
+})
 var vm = new Vue({
     el: '#app',
     data() {
@@ -15,6 +48,13 @@ var vm = new Vue({
               zabil:"",
               propustil:""
             },
+             obje: {
+                himsel:"",
+                name: "Choose",
+                zabil: "",
+                propustil: "",
+                opponent: "",
+             },
             save: {
                 igrok1: "Player1",
                 igrok2: "Player2",
@@ -22,14 +62,7 @@ var vm = new Vue({
                 propustil: "GA"
             },
             user: [],
-            obje: {
-                himsel:"",
-                name: "Choose",
-                zabil: "",
-                propustil: "",
-                opponent: "",
-
-            },
+           
             total:{
               viW:"",
               viL:"",
