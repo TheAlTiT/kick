@@ -1,5 +1,10 @@
 package kicker.kick;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.MonthDay;
@@ -11,19 +16,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class trial {
+
     public static void main(String[] args) throws Exception{
-        String datka="2019-05-13";
-        Pattern p = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
-        Matcher matcher=p.matcher(datka);
-        System.out.println(matcher.matches());
-        DateTimeFormatter my=DateTimeFormatter.ofPattern("d/M");
-        DateTimeFormatter bd=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //LocalDate ld = LocalDate.parse( datka, my);
-        MonthDay monthDay=MonthDay.parse(datka,my);
-        LocalDate ld=monthDay.atYear(2019);
-        //String sss=bd.format(my.parse(datka));
 
 
-        System.out.println(ld);
+
     }
 }

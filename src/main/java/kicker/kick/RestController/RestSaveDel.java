@@ -15,6 +15,8 @@ public class RestSaveDel {
 
     @GetMapping("/save")
     public String go(@RequestParam String name1, @RequestParam Integer win1, @RequestParam Integer lose1, @RequestParam String name2) {
+        System.out.println(win1+"win1");
+        System.out.println(lose1+" lose1");
         if (!name1.equals(name2) && (win1 == 10 || lose1 == 10)) {
             Player player1 = new Player();
             player1.setName(name1);
