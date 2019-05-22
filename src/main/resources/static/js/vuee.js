@@ -1,241 +1,184 @@
-Vue.component('igroki',{
-    props:['players'],
-    template: `<select v-bind:players="val" v-on:input="$emit('input', $event.target.value)">
-               <slot></slot>
-               <option value="vi">vi</option>
-                <option value="slavik">slavik</option>
-                <option value="dimas">dimas</option>
-</select>`,
-data:function(){
-return{
-val:this.players
-     }
 
-}})
-Vue.component('options',{
-props:['opts'],
-template:`<select :opts="val" @input="$emit('input',$event.target.value)">
-<slot></slot>
-<option v-for="index in range(0,10)" :value="index"">{{index}}</op[tion]>
-</select>
-`,
-data:function(){
-return {
-val:this.opts,
-index:0
-}
-},
-methods:{
-  	range : function (start, end) {
-      return Array(end - start + 1).fill().map((_, idx) => start + idx)
-   }
-  }
-})
-var vm = new Vue({
-    el: '#app',
-    data() {
-        return {
-            info: "click",
-            dat: "10",
-            countW: "",
-            countL: 0,
-            datka: "",
-            vi:"vi",
-            dimas:"dimas",
-            slavik:"slavik",
-            cliObj:{
-              result:"",
-              zabil:"",
-              propustil:""
-            },
-             obje: {
-                himsel:"",
-                name: "Choose",
-                zabil: "",
-                propustil: "",
-                opponent: "",
-             },
-            save: {
-                igrok1: "Player1",
-                igrok2: "Player2",
-                zabil1: "GF",
-                propustil: "GA"
-            },
-            user: [],
+
+Vue.component('topLeagues',{
+    props:['tops','sport','idsh','go','top'],
+    template:
+`<div>
+  <div v-bind:tops="tops" v-bind:idsh="idsh" v-bind:top="top" v-bind:sport="sport" v-for="league in tops" v-bind:key="league.leagueName" v-bind:id="idsh">
+  <li scope="row" v-if="league.sportId==sport" v-on:click="$emit('click',$event)" > {{league.leagueName}}</li>
+    </div>   
+   <slot></slot>
+</div>
+`,        
+        
+        
+    data:function () {
+        return{
+            tops:this.tops,
+            sport:this.sport,
+            idsh:this.idsh,
+            top:this.top
            
-            total:{
-              viW:"",
-              viL:"",
-              viGF:"",
-              viGA:"",
-              dimasW:"",
-              dimasL:"",
-              dimasGF:"",
-              dimasGA:"",
-              slavikW:"",
-              slavikL:"",
-              slavikGF:"",
-              slavikGA:"",
-            },
-            vidimas:{
-                result:"",
-                vi:"",
-                dimas:"",
-                viGF:"",
-                viGA:""
-            },
-            vislavik:{
-                result:"",
-                vi:"",
-                slavik:"",
-                viGF:"",
-                viGA:""
-            },
-            dimasslavik:{
-                result:"",
-                dimas:"",
-                slavik:"",
-                dimasGF:"",
-                dimasGA:""
-            },
-            ob:{},
-            count: "",
-            oppo: "Vse",
-            selected: '10'
-
         }
-    },
-    methods: {
-        fet: function () {
-         fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo + '&datka=' + this.datka)
-          //  fetch('http://localhost:8000/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
-                .then(response => response.json())
-                .then((myJson) => {
-                    this.info = JSON.stringify(myJson);
-                    this.countW = 0;
-                    this.countL = 0;
-                    let obj = JSON.parse(this.info);
-                    this.user = [];
-                    for (let i = 0; i < obj.length; i++) {
-                        this.obje = new Object();
-                        this.obje.name = obj[i].himsel;
-                        this.obje.zabil = obj[i].zabil;
-                        this.obje.propustil = obj[i].propustil;
-                        this.obje.opponent = obj[i].opponent;
-                        this.obje.result = obj[i].result;
-                        this.user.push(this.obje);
-                        if (this.obje.result === "W") {
-                            this.countW++;
-                        }
-                        if (this.obje.result === "L") {
-                            this.countL++;
-                        }
-                    }
-
-                })
-        },
-        cli:function(nam1){
-
-     fetch('https://kickhard.herokuapp.com/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
-         //   fetch('http://localhost:8000/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
-                .then(response => response.json())
-                .then((myJson) => {
-                    this.info = JSON.stringify(myJson);
-                    if(nam1==='vi'){
-                    this.vidimas.vi=0;
-                    this.vidimas.dimas=0;
-                    this.vislavik.vi=0;
-                    this.vislavik.slavik=0;
-                    this.vidimas.viGF=0;
-                    this.vidimas.viGA=0;
-                    this.vislavik.viGF=0;
-                    this.vislavik.viGA=0;
-                    }
-                    if(nam1==='dimas'){
-                    this.dimasslavik.dimas=0;
-                    this.dimasslavik.slavik=0;
-                    this.dimasslavik.dimasGF=0;
-                    this.dimasslavik.dimasGA=0;
-                    this.total.dimasW=0;
-                    this.total.dimasL=0;
-                    this.total.dimasGF=0;
-                    this.total.dimasGA=0;
-                        this.total.viW=0;
-                        this.total.viL=0;
-                        this.total.viGF=0;
-                        this.total.viGA=0;
-                        this.total.slavikW=0;
-                        this.total.slavikL=0;
-                        this.total.slavikGF=0;
-                        this.total.slavikGA=0;
-                    }
-                    let obj = JSON.parse(this.info);
-                    for (let i = 0; i < obj.length; i++) {
-                        this.cliObj = new Object();
-                        this.cliObj.name = obj[i].himsel;
-                        this.cliObj.opponent = obj[i].opponent;
-                        this.cliObj.zabil = obj[i].zabil;
-                        this.cliObj.propustil = obj[i].propustil;
-                        this.cliObj.result = obj[i].result;
-                        if(this.cliObj.name==="vi"&&this.cliObj.opponent==="dimas"){
-                        this.vidimas.viGF = this.vidimas.viGF + this.cliObj.zabil;
-                        this.vidimas.viGA = this.vidimas.viGA + this.cliObj.propustil;
-                    if (this.cliObj.result === "W") {
-                        this.vidimas.vi++;
-                    }
-                    if (this.cliObj.result === "L") {
-                            this.vidimas.dimas++;
-                    }
-                        }
-                       else  if(this.cliObj.name==="vi"&&this.cliObj.opponent==="slavik"){
-                            this.vislavik.viGF = this.vislavik.viGF + this.cliObj.zabil;
-                            this.vislavik.viGA = this.vislavik.viGA + this.cliObj.propustil;
-                            if (this.cliObj.result === "W") {
-                                this.vislavik.vi++;
-                            }
-                            if (this.cliObj.result === "L") {
-                                this.vislavik.slavik++;
-                            }
-                        }
-                        else  if(this.cliObj.name==="dimas"&&this.cliObj.opponent==="slavik"){
-                            this.dimasslavik.dimasGF = this.dimasslavik.dimasGF + this.cliObj.zabil;
-                            this.dimasslavik.dimasGA=this.dimasslavik.dimasGA+this.cliObj.propustil;
-                            if (this.cliObj.result === "W") {
-                                this.dimasslavik.dimas++;
-                            }
-                            if (this.cliObj.result === "L") {
-                                this.dimasslavik.slavik++;
-                            }
-                        }
-                    }
-
-                })
-        },
-        tot:function(){
-            this.total.viW+=this.vidimas.vi+this.vislavik.vi;
-            this.total.viL+=this.vidimas.dimas+this.vislavik.slavik;
-            this.total.viGF+=this.vidimas.viGF+this.vislavik.viGF;
-            this.total.viGA+=this.vidimas.viGA+this.vislavik.viGA;
-            this.total.dimasW+=this.vidimas.dimas+this.dimasslavik.dimas;
-            this.total.dimasL+=this.vidimas.vi+this.dimasslavik.slavik;
-            this.total.dimasGF+=this.vidimas.viGA+this.dimasslavik.dimasGF;
-            this.total.dimasGA+=this.vidimas.viGF+this.dimasslavik.dimasGA;
-            this.total.slavikW+=this.vislavik.slavik+this.dimasslavik.slavik;
-            this.total.slavikL+=this.vislavik.vi+this.dimasslavik.dimas;
-            this.total.slavikGF+=this.vislavik.viGA+this.dimasslavik.dimasGA;
-            this.total.slavikGA+=this.vislavik.viGF+this.dimasslavik.dimasGF;
-      },
-        sav: function () {
-          fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil + '&name2=' + this.save.igrok2)
-           //    fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
-            setTimeout(()=>{this.cli(this.vi)},200);
-            setTimeout(()=>{this.cli(this.dimas)},200);
-            setTimeout(()=>{this.tot()},800);
-        }
-    },
-    created:function() {
-        setTimeout(()=>{this.cli(this.vi)},10);
-      setTimeout(()=>{this.cli(this.dimas)},10);
-        setTimeout(()=>{this.tot()},800);
     }
-});
+})
+
+
+var vm=new Vue({
+    el:'#app',
+    data(){
+        return{
+        topLeagues:[],
+            notTopLeagues:[],
+            objectSportIdLeagueName:{
+            sportId:"",
+            leagueName:"",
+                leagueId:""
+            },
+            json:"",
+            sports:{//29-soccer,3-baseball,4-basketball,39-ausfoo,18-handball,33-tennis,19-hockey
+                soccer:29,
+                baseball:3,
+                basketball:4,
+                handball:18,
+                tennis:33,
+                hockey:19
+            },
+            ids:{
+            soccTop: 'soccTop',
+            soccMore:'soccMore',
+            basTop: 'basTop',
+            basMore: 'basMore',
+              hockTop: 'hockTop',
+           hockMore: 'hockMore',
+           baseTop: 'baseTop',
+           handTop: 'handTop',
+           handkMore: 'handMore' 
+            },
+            forClickLeague:{
+            leagueName:"",
+                sportId:"",
+                leagueId:""
+            },
+            isActive:{
+            sport:true,
+                socc:false,
+                soccMore:true,
+                display:true,
+                bas:false,
+                basMore:true,
+                 hock:false,
+                hockMore:true,
+                base:false,
+                hand:false,
+                handMore:true
+            }
+        }
+    }, methods:{
+        topLeaguesArrTrue:function(trfal){
+         //  fetch("http://localhost:8000/api/topLeague/"+trfal+"/").then(response=>response.json())
+           fetch("https://mysidebets.herokuapp.com/api/topLeague/"+trfal+"/").then(response=>response.json())
+                .then((myJson)=> {
+                    let bool=false;
+                    this.json = JSON.stringify(myJson);
+                    let obj = JSON.parse(this.json);
+                    this.topLeagues = [];
+                    for (let i = 0; i < obj.length; i++) {
+                        this.objectSportIdLeagueName = new Object();
+                        this.objectSportIdLeagueName.sportId = obj[i].sportId;
+                        this.objectSportIdLeagueName.leagueName = obj[i].leagueName;
+                        this.objectSportIdLeagueName.leagueId = obj[i].leagueId;
+                        if(trfal==true)
+                        this.topLeagues.push(this.objectSportIdLeagueName);
+                        else if(trfal==false)
+                       this.notTopLeagues.push(this.objectSportIdLeagueName);
+                    }
+                })
+        },
+        go:function (event,topNotTop) {
+        this.forClickLeague.leagueName=event.target.innerText;
+        if(topNotTop=='top'){
+        this.topLeagues.forEach(entry=>{
+            if(entry.leagueName==this.forClickLeague.leagueName){
+                this.forClickLeague.leagueId=entry.leagueId;
+                this.forClickLeague.sportId=entry.sportId;
+            }
+        })}
+        else if(topNotTop=='notTop'){
+         this.notTopLeagues.forEach(entry=>{
+                if(entry.leagueName==this.forClickLeague.leagueName){
+                    this.forClickLeague.leagueId=entry.leagueId;
+                    this.forClickLeague.sportId=entry.sportId;
+                }
+            })}
+         //   window.open("http://localhost:8000/Sport/"+this.forClickLeague.sportId+"/League/"+this.forClickLeague.leagueId+"/", '_self');
+           window.open("https://mysidebets.herokuapp.com/Sport/"+this.forClickLeague.sportId+"/League/"+this.forClickLeague.leagueId+"/", '_self');
+
+        //window.open("http://localhost:8000/Sport/"+this.topLeagues.length);
+  },
+    unhide:function (sports) {
+        if(sports=='soc'){
+            if(this.isActive.socc==true)
+            this.isActive.socc=false;
+            else
+                this.isActive.socc=true;
+                }
+        else if(sports=='socMore'){
+                if(this.isActive.soccMore==true)
+                this.isActive.soccMore=false;
+            else
+                this.isActive.soccMore=true;
+                }
+        else if(sports=='bas'){
+            if(this.isActive.bas==true)
+            this.isActive.bas=false;
+            else
+                this.isActive.bas=true;
+                }
+        else if(sports=='basMore'){
+                if(this.isActive.basMore==true)
+                this.isActive.basMore=false;
+            else
+                this.isActive.basMore=true;
+                }
+        else if(sports=='hock'){
+            if(this.isActive.hock==true)
+            this.isActive.hock=false;
+            else
+                this.isActive.hock=true;
+                }
+        else if(sports=='hockMore'){
+                if(this.isActive.hockMore==true)
+                this.isActive.hockMore=false;
+            else
+                this.isActive.hockMore=true;
+                }
+        else if(sports=='base'){
+            if(this.isActive.base==true)
+            this.isActive.base=false;
+            else
+                this.isActive.base=true;
+                }
+         else if(sports=='hand'){
+            if(this.isActive.hand==true)
+            this.isActive.hand=false;
+            else
+                this.isActive.hand=true;
+                }
+        else if(sports=='handMore'){
+                if(this.isActive.handMore==true)
+                this.isActive.handMore=false;
+            else
+                this.isActive.handMore=true;
+                }        
+        }
+       
+      },
+    created:function () {
+        //setTimeout(()=>{this.topLeaguesArrTrue(true)},250);
+        setTimeout(()=>{this.topLeaguesArrTrue(false)},350);
+        setTimeout(()=>{this.topLeaguesArrTrue(true)},450);
+      }
+
+})
+
