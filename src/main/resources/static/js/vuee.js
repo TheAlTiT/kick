@@ -1,3 +1,37 @@
+Vue.component('igroki', {
+    props: ['players'],
+    template: `<select v-bind:players="val" v-on:input="$emit('input', $event.target.value)">
+               <slot></slot>
+               <option value="vi">vi</option>
+                <option value="slavik">slavik</option>
+                <option value="dimas">dimas</option>
+</select>`,
+    data: function () {
+        return {
+            val: this.players
+        }
+
+    }
+})
+Vue.component('options', {
+    props: ['opts'],
+    template: `<select :opts="val" @input="$emit('input',$event.target.value)">
+<slot></slot>
+<option v-for="index in range(0,10)" :value="index"">{{index}}</op[tion]>
+</select>
+`,
+    data: function () {
+        return {
+            val: this.opts,
+            index: 0
+        }
+    },
+    methods: {
+        range: function (start, end) {
+            return Array(end - start + 1).fill().map((_, idx) => start + idx)
+        }
+    }
+})
 var vm = new Vue({
     el: '#app',
     data() {
@@ -11,9 +45,16 @@ var vm = new Vue({
             dimas:"dimas",
             slavik:"slavik",
             cliObj:{
-              result:"",
-              zabil:"",
-              propustil:""
+                result: "",
+                zabil: "",
+                propustil: ""
+            },
+            obje: {
+                himsel:"",
+                name: "Choose",
+                zabil: "",
+                propustil: "",
+                opponent: "",
             },
             save: {
                 igrok1: "Player1",
@@ -22,27 +63,20 @@ var vm = new Vue({
                 propustil: "GA"
             },
             user: [],
-            obje: {
-                himsel:"",
-                name: "Choose",
-                zabil: "",
-                propustil: "",
-                opponent: "",
 
-            },
             total:{
-              viW:"",
-              viL:"",
-              viGF:"",
-              viGA:"",
-              dimasW:"",
-              dimasL:"",
-              dimasGF:"",
-              dimasGA:"",
-              slavikW:"",
-              slavikL:"",
-              slavikGF:"",
-              slavikGA:"",
+                viW: "",
+                viL: "",
+                viGF: "",
+                viGA: "",
+                dimasW: "",
+                dimasL: "",
+                dimasGF: "",
+                dimasGA: "",
+                slavikW: "",
+                slavikL: "",
+                slavikGF: "",
+                slavikGA: "",
             },
             vidimas:{
                 result:"",
@@ -74,8 +108,8 @@ var vm = new Vue({
     },
     methods: {
         fet: function () {
-         fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo + '&datka=' + this.datka)
-          //  fetch('http://localhost:8000/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
+            fetch('https://kickhard.herokuapp.com/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo + '&datka=' + this.datka)
+            //  fetch('http://localhost:8000/api/get/' + this.obje.name + '?kolvo=' + this.dat + '&oppoName=' + this.oppo+'&datka='+this.datka)
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
@@ -103,30 +137,30 @@ var vm = new Vue({
         },
         cli:function(nam1){
 
-     fetch('https://kickhard.herokuapp.com/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
-         //   fetch('http://localhost:8000/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
+            fetch('https://kickhard.herokuapp.com/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
+            //   fetch('http://localhost:8000/api/get/' + nam1 + '?kolvo=Vse&oppoName=a&datka=Vse')
                 .then(response => response.json())
                 .then((myJson) => {
                     this.info = JSON.stringify(myJson);
                     if(nam1==='vi'){
-                    this.vidimas.vi=0;
-                    this.vidimas.dimas=0;
-                    this.vislavik.vi=0;
-                    this.vislavik.slavik=0;
-                    this.vidimas.viGF=0;
-                    this.vidimas.viGA=0;
-                    this.vislavik.viGF=0;
-                    this.vislavik.viGA=0;
+                        this.vidimas.vi = 0;
+                        this.vidimas.dimas = 0;
+                        this.vislavik.vi = 0;
+                        this.vislavik.slavik = 0;
+                        this.vidimas.viGF = 0;
+                        this.vidimas.viGA = 0;
+                        this.vislavik.viGF = 0;
+                        this.vislavik.viGA = 0;
                     }
                     if(nam1==='dimas'){
-                    this.dimasslavik.dimas=0;
-                    this.dimasslavik.slavik=0;
-                    this.dimasslavik.dimasGF=0;
-                    this.dimasslavik.dimasGA=0;
-                    this.total.dimasW=0;
-                    this.total.dimasL=0;
-                    this.total.dimasGF=0;
-                    this.total.dimasGA=0;
+                        this.dimasslavik.dimas = 0;
+                        this.dimasslavik.slavik = 0;
+                        this.dimasslavik.dimasGF = 0;
+                        this.dimasslavik.dimasGA = 0;
+                        this.total.dimasW = 0;
+                        this.total.dimasL = 0;
+                        this.total.dimasGF = 0;
+                        this.total.dimasGA = 0;
                         this.total.viW=0;
                         this.total.viL=0;
                         this.total.viGF=0;
@@ -145,16 +179,15 @@ var vm = new Vue({
                         this.cliObj.propustil = obj[i].propustil;
                         this.cliObj.result = obj[i].result;
                         if(this.cliObj.name==="vi"&&this.cliObj.opponent==="dimas"){
-                        this.vidimas.viGF = this.vidimas.viGF + this.cliObj.zabil;
-                        this.vidimas.viGA = this.vidimas.viGA + this.cliObj.propustil;
-                    if (this.cliObj.result === "W") {
-                        this.vidimas.vi++;
-                    }
-                    if (this.cliObj.result === "L") {
-                            this.vidimas.dimas++;
-                    }
-                        }
-                       else  if(this.cliObj.name==="vi"&&this.cliObj.opponent==="slavik"){
+                            this.vidimas.viGF = this.vidimas.viGF + this.cliObj.zabil;
+                            this.vidimas.viGA = this.vidimas.viGA + this.cliObj.propustil;
+                            if (this.cliObj.result === "W") {
+                                this.vidimas.vi++;
+                            }
+                            if (this.cliObj.result === "L") {
+                                this.vidimas.dimas++;
+                            }
+                        } else if (this.cliObj.name === "vi" && this.cliObj.opponent === "slavik") {
                             this.vislavik.viGF = this.vislavik.viGF + this.cliObj.zabil;
                             this.vislavik.viGA = this.vislavik.viGA + this.cliObj.propustil;
                             if (this.cliObj.result === "W") {
@@ -163,8 +196,7 @@ var vm = new Vue({
                             if (this.cliObj.result === "L") {
                                 this.vislavik.slavik++;
                             }
-                        }
-                        else  if(this.cliObj.name==="dimas"&&this.cliObj.opponent==="slavik"){
+                        } else  if(this.cliObj.name==="dimas"&&this.cliObj.opponent==="slavik"){
                             this.dimasslavik.dimasGF = this.dimasslavik.dimasGF + this.cliObj.zabil;
                             this.dimasslavik.dimasGA=this.dimasslavik.dimasGA+this.cliObj.propustil;
                             if (this.cliObj.result === "W") {
@@ -191,10 +223,10 @@ var vm = new Vue({
             this.total.slavikL+=this.vislavik.vi+this.dimasslavik.dimas;
             this.total.slavikGF+=this.vislavik.viGA+this.dimasslavik.dimasGA;
             this.total.slavikGA+=this.vislavik.viGF+this.dimasslavik.dimasGF;
-      },
+        },
         sav: function () {
-          fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil + '&name2=' + this.save.igrok2)
-           //    fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
+            fetch('https://kickhard.herokuapp.com/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil + '&name2=' + this.save.igrok2)
+            //    fetch('http://localhost:8000/ap/save?name1=' + this.save.igrok1 + '&win1=' + this.save.zabil1 + '&lose1=' + this.save.propustil+'&name2='+this.save.igrok2)
             setTimeout(()=>{this.cli(this.vi)},200);
             setTimeout(()=>{this.cli(this.dimas)},200);
             setTimeout(()=>{this.tot()},800);
@@ -202,7 +234,9 @@ var vm = new Vue({
     },
     created:function() {
         setTimeout(()=>{this.cli(this.vi)},10);
-      setTimeout(()=>{this.cli(this.dimas)},10);
+        setTimeout(() => {
+            this.cli(this.dimas)
+        }, 10);
         setTimeout(()=>{this.tot()},800);
     }
 });
